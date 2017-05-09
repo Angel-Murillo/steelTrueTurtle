@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217426021227",
+    "firebase_url": "https://truesteelturtle.firebaseio.com",
+    "project_id": "truesteelturtle",
+    "storage_bucket": "truesteelturtle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217426021227:android:0ce21b77c12b9349",
+        "android_client_info": {
+          "package_name": "com.example.andriod.steeltrueturtle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217426021227-87mrjau85upjvl7deu2mn13goni2cs02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andriod.steeltrueturtle",
+            "certificate_hash": "c2ed39625e76cb7e4a988807f184b9e30cb80b2a"
+          }
+        },
+        {
+          "client_id": "217426021227-g6n8f39t4aqrghs1hma1c4vrhuut0ahm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASUt6VWXckpe0FicuprbMW5rPo2OUS8Fk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217426021227-g6n8f39t4aqrghs1hma1c4vrhuut0ahm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

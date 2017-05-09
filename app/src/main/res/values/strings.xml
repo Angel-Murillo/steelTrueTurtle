@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Steel</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="lineName">Line Name</string>
+    <string name="location">Location</string>
+    <string name="time">Time</string>
+    <string name="description">Description</string>
+</resources>

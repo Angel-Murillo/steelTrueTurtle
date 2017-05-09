@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    >
+
+    <TextView
+        android:id="@+id/lineJoin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/moreDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="more Details"
+        android:onClick="moreDetails"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/names"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/position"
+                android:text="position(delete)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/timeWaited"
+                android:text="timeWaited(delete)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/timeLeft"
+                android:text="timeLeft(delete)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/leave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="leave"
+        android:onClick="leave"/>
+
+
+</LinearLayout>

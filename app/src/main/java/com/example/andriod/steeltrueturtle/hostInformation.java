@@ -1,6 +1,7 @@
 package com.example.andriod.steeltrueturtle;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,10 +25,10 @@ public class hostInformation extends AppCompatActivity {
     private TextView loginDetails;
 
     private EditText inputName,inputPhone,inputlineName,inputLocation,inputTime,inputDescription;
-    private Button btnSave;
+    private Button createLine;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
-    private Button createLine;
+    private Button proceed;
     private String userId;
     private FirebaseAuth mAuth;
 
@@ -49,9 +50,9 @@ public class hostInformation extends AppCompatActivity {
         String gmail = clientAuth.getEmail().toString();
         loginDetails.setText("Login as: " + gmail );
 
-        btnSave = (Button) findViewById(R.id.btn_save);
-
         createLine = (Button) findViewById(R.id.createLine);
+
+        proceed = (Button) findViewById(R.id.proceed);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -59,7 +60,7 @@ public class hostInformation extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("Line");
 
         // Save steelTurtleUser information
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        createLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = inputName.getText().toString();
@@ -68,16 +69,33 @@ public class hostInformation extends AppCompatActivity {
                 String location = inputLocation.getText().toString();
                 String time = inputTime.getText().toString();
                 String description = inputDescription.getText().toString();
+                if(name.length()>0 &&phone.length()==10&& lineName.length() >0&& location.length() >0&&time.contains(":")&& time.length() >4&&time.length() <6&& description.length()>0)
+                {
 
-                // Check for already existed userId
-                if (TextUtils.isEmpty(userId)) {
-                    createsteelTurtleUser(name, phone,lineName,location,time,description);
+                    // Check for already existed userId
+                    if (TextUtils.isEmpty(userId)) {
+                        createsteelTurtleUser(name, phone, lineName, location, time, description);
 
+                    }
+                    Intent intent = new Intent(hostInformation.this, manageLines.class);
+                    startActivity(intent);
+                }
+                else if(!time.contains(":")){
+                    Snackbar spacesMessage = Snackbar.make(view, "Time requires a semicolon", Snackbar.LENGTH_SHORT);
+                    spacesMessage.show();
+                }
+                else  if(phone.length()!=10){
+                    Snackbar spacesMessage = Snackbar.make(view, "Sorry please make sure your phone number is correct", Snackbar.LENGTH_SHORT);
+                    spacesMessage.show();
+                }
+                else{
+                    Snackbar spacesMessage = Snackbar.make(view, "Please fill in all empty spaces", Snackbar.LENGTH_SHORT);
+                    spacesMessage.show();
                 }
             }
         });
 
-        createLine.setOnClickListener(new View.OnClickListener() {
+        proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(hostInformation.this,manageLines.class);
@@ -88,6 +106,7 @@ public class hostInformation extends AppCompatActivity {
     }
 
     private void createsteelTurtleUser(String name, String phone,String lineName,String location,String time, String description) {
+
         // TODO
         // In real apps this userId should be fetched
         // by implementing firebase auth

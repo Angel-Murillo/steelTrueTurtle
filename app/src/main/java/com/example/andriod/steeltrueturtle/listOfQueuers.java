@@ -26,25 +26,11 @@ public class listOfQueuers extends AppCompatActivity {
         String linePressed = extras.getString("lineClicked");
         Log.i("here","i am");
         queuers.displayQueuers(nClients,linePressed);
+
         try {
             Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-

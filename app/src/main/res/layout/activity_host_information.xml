@@ -50,7 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phone"
-                    android:inputType="textEmailAddress"
+                    android:digits="0123456789."
+                    android:inputType="numberDecimal"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
@@ -101,20 +102,20 @@
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/createLine"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="save"
+                android:text="Create Line"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
             <Button
-                android:id="@+id/createLine"
+                android:id="@+id/proceed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Line"
+                android:text="Manange Lines"
                 android:onClick="clicked"/>
         </LinearLayout>
     </ScrollView>

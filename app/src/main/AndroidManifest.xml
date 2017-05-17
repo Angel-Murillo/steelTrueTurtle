@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HostOrJoin" />
-        <activity android:name=".hostInformation" />
+        <activity android:name=".hostInformation"
+            android:parentActivityName=".HostOrJoin"/>
         <activity android:name=".manageLines" />
         <activity android:name=".clientInformation" />
         <activity android:name=".nearbyLines" />

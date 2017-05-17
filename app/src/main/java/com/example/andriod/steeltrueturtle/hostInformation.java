@@ -58,6 +58,13 @@ public class hostInformation extends AppCompatActivity {
         // creates/references Lines
         mFirebaseDatabase = mFirebaseInstance.getReference("Line");
 
+        //load up firebase user's information onto the form
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null){
+            inputName.setText(firebaseUser.getDisplayName());
+            inputDescription.setText(firebaseUser.getEmail());
+        }
+
         // Save steelTurtleUser information
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

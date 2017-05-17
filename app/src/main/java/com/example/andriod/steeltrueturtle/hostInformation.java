@@ -79,7 +79,6 @@ public class hostInformation extends AppCompatActivity {
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {
                     createsteelTurtleUser(name, phone,lineName,location,time,description);
-
                 }
             }
         });
@@ -134,7 +133,6 @@ public class hostInformation extends AppCompatActivity {
                 inputLocation.setText("");
                 inputTime.setText("");
                 inputDescription.setText("");
-
             }
 
             @Override

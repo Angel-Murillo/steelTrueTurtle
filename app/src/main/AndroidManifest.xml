@@ -21,11 +21,16 @@
         <activity android:name=".HostOrJoin" />
         <activity android:name=".hostInformation"
             android:parentActivityName=".HostOrJoin"/>
-        <activity android:name=".manageLines" />
-        <activity android:name=".clientInformation" />
-        <activity android:name=".nearbyLines" />
-        <activity android:name=".queuerDetails" />
-        <activity android:name=".listOfQueuers"></activity>
+        <activity android:name=".manageLines"
+            android:parentActivityName=".hostInformation"/>
+        <activity android:name=".clientInformation"
+            android:parentActivityName=".HostOrJoin"/>
+        <activity android:name=".nearbyLines"
+            android:parentActivityName=".clientInformation"/>
+        <activity android:name=".queuerDetails"
+            android:parentActivityName=".nearbyLines"/>
+        <activity android:name=".listOfQueuers"
+            android:parentActivityName=".manageLines"></activity>
     </application>
 
 </manifest>

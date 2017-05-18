@@ -21,11 +21,13 @@ public class steelTurtleUser{
         this.name = name;
         this.phone = phone;
     }
+    //used to instantiate client
     public steelTurtleUser(String name, String phone, String gmail) {
         this.name = name;
         this.phone = phone;
         this.gmail = gmail;
     }
+    //used to instantiate host
     public steelTurtleUser(String name, String phone, String lineName,String location,String time ,String description, String gmail) {
         this.name = name;
         this.phone= phone;

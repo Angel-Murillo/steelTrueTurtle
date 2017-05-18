@@ -1,4 +1,4 @@
-package com.example.andriod.steeltrueturtle;
+package com.example.andriod.steeltrueturtle.client;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.andriod.steeltrueturtle.steelTurtleUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

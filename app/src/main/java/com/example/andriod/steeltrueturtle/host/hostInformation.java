@@ -1,4 +1,4 @@
-package com.example.andriod.steeltrueturtle;
+package com.example.andriod.steeltrueturtle.host;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.andriod.steeltrueturtle.R;
+import com.example.andriod.steeltrueturtle.steelTurtleUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

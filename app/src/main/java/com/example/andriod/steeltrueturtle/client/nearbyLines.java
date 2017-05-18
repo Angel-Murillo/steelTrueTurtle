@@ -1,4 +1,4 @@
-package com.example.andriod.steeltrueturtle;
+package com.example.andriod.steeltrueturtle.client;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,22 +9,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.example.andriod.steeltrueturtle.R;
+import com.example.andriod.steeltrueturtle.fireBaseManager;
+import com.example.andriod.steeltrueturtle.steelTurtleUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+
+import static com.example.andriod.steeltrueturtle.R.id.lineInformation;
 
 public class nearbyLines extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private FirebaseAuth mAuth;
-    private Button join;
+    private Button join,lineInfo;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private String userId;
@@ -42,7 +43,7 @@ public class nearbyLines extends AppCompatActivity implements AdapterView.OnItem
         lines.setOnItemClickListener(this);
 
         join = (Button) findViewById(R.id.join);
-
+        lineInfo= (Button) findViewById(lineInformation);
         final ArrayAdapter<String> arrayofLines = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,nLines);
         lines.setAdapter(arrayofLines);
         help1.displayLocationChild(nLines);
@@ -70,12 +71,18 @@ public class nearbyLines extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
+        lineInfo.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(nearbyLines.this, hostInformationPopUp.class);
+                startActivity(intent);
+            }
+        });
     }
     public void createUser() {
         mFirebaseInstance = FirebaseDatabase.getInstance();
-        // store app title to 'app_title' node
-        mFirebaseInstance.getReference("app_tritle").setValue("Realtrime Database");
+
         // references clients
         mFirebaseDatabase = mFirebaseInstance.getReference("NearbyLine");
         // TODO

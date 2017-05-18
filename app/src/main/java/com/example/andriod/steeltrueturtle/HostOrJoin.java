@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.andriod.steeltrueturtle.client.clientInformation;
+import com.example.andriod.steeltrueturtle.host.hostInformation;
+
 public class HostOrJoin extends AppCompatActivity {
 
     @Override

@@ -27,6 +27,7 @@
         <activity android:name=".host.listOfQueuers" />
         <activity android:name=".host.queuerPopUp" />
         <activity android:name=".client.hostInformationPopUp"></activity>
+
     </application>
 
 </manifest>

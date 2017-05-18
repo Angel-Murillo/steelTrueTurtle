@@ -70,6 +70,7 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
                 startActivity(intent);
             }
         });
+
         onBackPressed();
 
     }
@@ -78,6 +79,14 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
     {
         //can not go back
     }
+
+    public void delete(View view){
+        int deleter = getPositionClicked();
+        help.deleteLine(deleter);
+        finish();
+        startActivity(getIntent());
+    }
+
     public void manage(View view)
     {
         Intent intent = new Intent(manageLines.this, listOfQueuers.class);
@@ -85,6 +94,10 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
         Log.i("line pressed",linePressed);
         intent.putExtra("lineClicked",linePressed);
         startActivity(intent);
+
+    }
+
+    public void createNewLine(View view){
 
     }
     // retrieves/and initializes position

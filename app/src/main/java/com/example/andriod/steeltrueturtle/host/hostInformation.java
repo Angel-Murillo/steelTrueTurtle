@@ -30,9 +30,9 @@ public class hostInformation extends AppCompatActivity {
     private Button createLine;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
-    private Button proceed;
     private String userId;
     private FirebaseAuth mAuth;
+    private Button proceed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +53,20 @@ public class hostInformation extends AppCompatActivity {
         loginDetails.setText("Login as: " + gmail );
 
         createLine = (Button) findViewById(R.id.createLine);
-
-        proceed = (Button) findViewById(R.id.proceed);
+        proceed = (Button) findViewById(R.id.proceed1);
+        //proceed = (Button) findViewById(R.id.proceed);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         // creates/references Lines
         mFirebaseDatabase = mFirebaseInstance.getReference("Line");
+
+        //load up firebase user's information onto the form
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null){
+            inputName.setText(firebaseUser.getDisplayName());
+            inputDescription.setText(firebaseUser.getEmail());
+        }
 
         // Save steelTurtleUser information
         createLine.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +97,13 @@ public class hostInformation extends AppCompatActivity {
                     Snackbar spacesMessage = Snackbar.make(view, "Sorry please make sure your phone number is correct", Snackbar.LENGTH_SHORT);
                     spacesMessage.show();
                 }
-                else{
+                else {
                     Snackbar spacesMessage = Snackbar.make(view, "Please fill in all empty spaces", Snackbar.LENGTH_SHORT);
                     spacesMessage.show();
+                }
+                // Check for already existed userId
+                if (TextUtils.isEmpty(userId)) {
+                    createsteelTurtleUser(name, phone,lineName,location,time,description);
                 }
             }
         });
@@ -148,7 +159,6 @@ public class hostInformation extends AppCompatActivity {
                 inputLocation.setText("");
                 inputTime.setText("");
                 inputDescription.setText("");
-
             }
 
             @Override

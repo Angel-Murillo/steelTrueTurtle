@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class manageLines extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private int position;
-    private Button delButton,makeNewLine;
+    private Button delButton;
 
     private DatabaseReference mPostReference= FirebaseDatabase.getInstance().getReference();
     private ListView mList;
@@ -35,8 +35,6 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_manage_lines);
 
         delButton = (Button) findViewById(R.id.delete);
-        makeNewLine = (Button) findViewById(R.id.makeNewLine);
-
         mList=(ListView)findViewById(R.id.lineList);
         mList.setOnItemClickListener(this);
         mAuth= FirebaseAuth.getInstance();
@@ -47,29 +45,7 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
         mList.setAdapter(arrayA);
 
         help.displayHostLines(mUser);
-        //delay code for 2 seconds so lines can be loaded up on the screen
-        try {
-            Thread.sleep(2000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
 
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int deleter = getPositionClicked();
-                help.deleteLine(deleter);
-                finish();
-                startActivity(getIntent());
-            }
-        });
-        makeNewLine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(manageLines.this, hostInformation.class);
-                startActivity(intent);
-            }
-        });
         onBackPressed();
 
     }
@@ -78,6 +54,14 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
     {
         //can not go back
     }
+
+    public void delete(View view){
+        int deleter = getPositionClicked();
+        help.deleteLine(deleter);
+        finish();
+        startActivity(getIntent());
+    }
+
     public void manage(View view)
     {
         Intent intent = new Intent(manageLines.this, listOfQueuers.class);
@@ -85,6 +69,9 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
         Log.i("line pressed",linePressed);
         intent.putExtra("lineClicked",linePressed);
         startActivity(intent);
+    }
+
+    public void createNewLine(View view){
 
     }
     // retrieves/and initializes position
@@ -106,7 +93,6 @@ public class manageLines extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position +"parent is: "+parent.toString());
-
         String nameOfLine = mList.getItemAtPosition(position).toString();
         lineClicked(nameOfLine);
         positionClicked(position);

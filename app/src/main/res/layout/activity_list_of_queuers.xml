@@ -20,14 +20,7 @@
         tools:layout_editor_absoluteX="8dp"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/notificate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notificate"
-        tools:layout_editor_absoluteY="354dp"
-        tools:layout_editor_absoluteX="148dp"
-        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/viewInformation"
         android:layout_width="wrap_content"

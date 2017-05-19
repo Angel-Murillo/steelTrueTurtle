@@ -53,6 +53,10 @@ public class clientInformation extends AppCompatActivity {
         // references clients
         mFirebaseDatabase = mFirebaseInstance.getReference("Clients");
 
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null){
+            inputName.setText(firebaseUser.getDisplayName());
+        }
 
         // Save / update the user
         finished.setOnClickListener(new View.OnClickListener() {

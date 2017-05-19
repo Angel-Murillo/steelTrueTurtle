@@ -42,9 +42,6 @@ public class listOfQueuers extends AppCompatActivity implements AdapterView.OnIt
             Thread.currentThread().interrupt();
         }
 
-
-
-
         queuerDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

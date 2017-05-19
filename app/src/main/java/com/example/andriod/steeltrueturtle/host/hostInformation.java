@@ -1,4 +1,5 @@
 package com.example.andriod.steeltrueturtle.host;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.andriod.steeltrueturtle.R;
 import com.example.andriod.steeltrueturtle.steelTurtleUser;
@@ -19,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 
 public class hostInformation extends AppCompatActivity {
@@ -65,8 +70,25 @@ public class hostInformation extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser != null){
             inputName.setText(firebaseUser.getDisplayName());
-            inputDescription.setText(firebaseUser.getEmail());
         }
+
+        inputTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(hostInformation.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        inputTime.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
 
         // Save steelTurtleUser information
         createLine.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +127,8 @@ public class hostInformation extends AppCompatActivity {
                 if (TextUtils.isEmpty(userId)) {
                     createsteelTurtleUser(name, phone,lineName,location,time,description);
                 }
+
+                Toast.makeText(hostInformation.this, "Line created", Toast.LENGTH_LONG).show();
             }
         });
 

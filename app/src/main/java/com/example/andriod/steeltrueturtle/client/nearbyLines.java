@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static com.example.andriod.steeltrueturtle.R.id.lineInformation;
+
 
 public class nearbyLines extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private FirebaseAuth mAuth;
@@ -43,7 +43,7 @@ public class nearbyLines extends AppCompatActivity implements AdapterView.OnItem
         lines.setOnItemClickListener(this);
 
         join = (Button) findViewById(R.id.join);
-        lineInfo= (Button) findViewById(lineInformation);
+
         final ArrayAdapter<String> arrayofLines = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,nLines);
         lines.setAdapter(arrayofLines);
         help1.displayLocationChild(nLines);

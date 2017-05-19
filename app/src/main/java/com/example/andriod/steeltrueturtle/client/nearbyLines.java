@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 
-
 public class nearbyLines extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private FirebaseAuth mAuth;
     private Button join,lineInfo;
@@ -71,14 +70,7 @@ public class nearbyLines extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-        lineInfo.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(nearbyLines.this, hostInformationPopUp.class);
-                startActivity(intent);
-            }
-        });
+        
     }
     public void createUser() {
         mFirebaseInstance = FirebaseDatabase.getInstance();

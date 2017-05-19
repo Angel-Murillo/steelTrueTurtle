@@ -25,7 +25,8 @@
         <activity android:name=".client.nearbyLines" />
         <activity android:name=".client.queuerDetails" />
         <activity android:name=".host.listOfQueuers" />
-        <activity android:name=".host.queuerPopUp" />
+        <activity android:name=".host.queuerPopUp"
+            android:theme="@style/AppTheme.touchDisappear"></activity>
         <activity android:name=".client.hostInformationPopUp"></activity>
 
     </application>

@@ -19,12 +19,7 @@
         android:paddingTop="10dp"
         android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/moreDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="more Details"
-        android:onClick="moreDetails"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="250dp">
@@ -35,6 +30,7 @@
 
             <TextView
                 android:id="@+id/names"
+                android:text="name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
@@ -44,16 +40,7 @@
 
             <TextView
                 android:id="@+id/position"
-                android:text="position(delete)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/timeWaited"
-                android:text="timeWaited(delete)"
+                android:text="position"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
@@ -61,14 +48,6 @@
                 android:textSize="20dp" />
 
 
-            <TextView
-                android:id="@+id/timeLeft"
-                android:text="timeLeft(delete)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp"
-                android:textSize="20dp" />
 
 
         </LinearLayout>

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.andriod.steeltrueturtle.steelTurtleUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +26,7 @@ public class fireBaseManager {
     private DatabaseReference mPostReference= FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
 
-    fireBaseManager(){
+    public fireBaseManager(){
 
     }
     /*maybe later on
@@ -38,6 +39,28 @@ public class fireBaseManager {
     {
         return lines;
     }*/
+    //used in manageLines
+    public void deleteLineWithQueuers(final String lineName)
+    {
+        mPostReference.child("NearbyLine").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    String lines = snapshot.getKey().toString();
+                    Log.i("the NearbyLine:",lines);
+                    if(lines.equals(lineName)){
+                        snapshot.getRef().setValue(null);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     //used in manageLines
     //deletes line that user wants to delete
     public void deleteLine(final int position)
@@ -68,6 +91,8 @@ public class fireBaseManager {
                                 snapshot.getRef().child("gmail").setValue(null);
                                 snapshot.getRef().child("name").setValue(null);
                                 snapshot.getRef().child("phone").setValue(null);
+                                String lineName = snapshot.getValue(steelTurtleUser.class).getLineName();
+                                deleteLineWithQueuers(lineName);
                                 snapshot.getRef().child("lineName").setValue(null);
                                 snapshot.getRef().child("location").setValue(null);
                                 snapshot.getRef().child("time").setValue(null);

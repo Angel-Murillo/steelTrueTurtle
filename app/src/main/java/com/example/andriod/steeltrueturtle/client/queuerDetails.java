@@ -1,10 +1,12 @@
-package com.example.andriod.steeltrueturtle;
+package com.example.andriod.steeltrueturtle.client;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.andriod.steeltrueturtle.R;
+import com.example.andriod.steeltrueturtle.steelTurtleUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,9 +29,7 @@ public class queuerDetails extends AppCompatActivity {
         String name = extras.getString("name");
         String line = extras.getString("lineJoined");
         final String phone = extras.getString("phones");
-        Log.i("aqui","here");
-        Log.i("name",name);
-        Log.i("line",line);
+
         lineJoined.setText("Line Join: "+ line);
         nameDisplay.setText("Name: "+name);
 

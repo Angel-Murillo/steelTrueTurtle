@@ -23,7 +23,10 @@
             android:footerDividersEnabled="false"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            android:choiceMode="singleChoice"
+            android:listSelector="@color/lightBlue"
+            />
 
         <Button
             android:id="@+id/manageButton"
@@ -34,15 +37,15 @@
             tools:layout_editor_absoluteX="148dp"
             android:onClick="manage"
             />
+
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="delete"
-            tools:layout_editor_absoluteY="354dp"
-            tools:layout_editor_absoluteX="148dp"
             android:onClick="delete"
-            />
+            android:text="delete"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="354dp" />
 
         <Button
             android:id="@+id/makeNewLine"

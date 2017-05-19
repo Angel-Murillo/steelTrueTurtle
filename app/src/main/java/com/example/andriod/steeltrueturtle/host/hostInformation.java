@@ -23,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class hostInformation extends AppCompatActivity {
@@ -82,7 +84,13 @@ public class hostInformation extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(hostInformation.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        inputTime.setText( selectedHour + ":" + selectedMinute);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm");
+                        Date date = new Date();
+                        date.setHours(selectedHour);
+                        date.setMinutes(selectedMinute);
+                        simpleDateFormat.format(date);
+
+                        inputTime.setText(simpleDateFormat.format(date));
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -100,7 +108,7 @@ public class hostInformation extends AppCompatActivity {
                 String location = inputLocation.getText().toString();
                 String time = inputTime.getText().toString();
                 String description = inputDescription.getText().toString();
-                if(name.length()>0 &&phone.length()==10&& lineName.length() >0&& location.length() >0&&time.contains(":")&& time.length() >4&&time.length() <6&& description.length()>0)
+                if(name.length()>0 &&phone.length()==10&& lineName.length() >0&& location.length() >0&&time.contains(":")&& time.length() >3&&time.length() <6&& description.length()>0)
                 {
 
                     // Check for already existed userId

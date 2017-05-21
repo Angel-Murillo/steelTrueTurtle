@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.andriod.steeltrueturtle.host.queuerPopUp">
+    tools:context="com.example.andriod.steeltrueturtle.host.queuerInLinePopUp">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,7 +15,7 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/hostName"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="34dp"
                 android:text="Host Name"
                 tools:layout_editor_absoluteX="151dp"
@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/phone"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="34dp"
                 android:text="Phone"
                 tools:layout_editor_absoluteX="151dp"
@@ -33,7 +33,7 @@
                 />
             <TextView
                 android:id="@+id/lineName"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="34dp"
                 android:text="Line Name"
                 tools:layout_editor_absoluteX="151dp"
@@ -41,7 +41,7 @@
                 tools:ignore="MissingConstraints" />
             <TextView
                 android:id="@+id/time"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="34dp"
                 android:text="Time"
                 tools:layout_editor_absoluteX="151dp"
@@ -50,7 +50,7 @@
 
             <TextView
                 android:id="@+id/location"
-                android:layout_width="150dp"
+                android:layout_width="350dp"
                 android:layout_height="34dp"
                 android:text="Location"
                 tools:layout_editor_absoluteX="151dp"
@@ -59,8 +59,8 @@
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="150dp"
-                android:layout_height="34dp"
+                android:layout_width="250dp"
+                android:layout_height="164dp"
                 android:text="Description"
                 tools:layout_editor_absoluteX="151dp"
                 tools:layout_editor_absoluteY="118dp"

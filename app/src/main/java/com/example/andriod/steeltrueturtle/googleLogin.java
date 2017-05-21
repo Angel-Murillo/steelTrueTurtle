@@ -30,7 +30,7 @@ public class googleLogin extends AppCompatActivity {
     //
     private GoogleApiClient googleClient;
     private static final int RC_SIGN_IN =1;
-    private static final String TAG = "information to debug";
+
     //variable used to reference Authentication
     private FirebaseAuth mAuth;
 
@@ -43,16 +43,8 @@ public class googleLogin extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         //references the button created in activity_fire_base_login
         logGoogle = (SignInButton) findViewById(R.id.googleButton);
-        //gets Authentication information about user
-        FirebaseUser user = mAuth.getCurrentUser();
-        //how to get user email/ delete later after
-        //Log.i("the id ::::","" +user.getEmail());
 
-        //if(user.getEmail()==null){
-            //Intent i = new Intent(this,HostOrJoin.class);
-            //startActivity(i);
-            //finish();
-        //}
+
 
 
         // Configure Google Sign In
@@ -94,7 +86,7 @@ public class googleLogin extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.i("RESULT CODE:  ", String.format("%d", requestCode));
+
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         //RC_SIGN_IN
         if (requestCode == RC_SIGN_IN) {
@@ -107,16 +99,14 @@ public class googleLogin extends AppCompatActivity {
                 startActivity(i);
                 finish();
             } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
-                Log.i("Google:","failed");
+
+
             }
         }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId().toString());
-        Log.d("EMAIL:::" , acct.getEmail());
+
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -125,20 +115,17 @@ public class googleLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //how to get user email
-                            Log.i("the id ::::","" +user.getEmail());
-                            //updateUI(user);
+
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+
                             Toast.makeText(googleLogin.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+
                         }
 
-                        // ...
                     }
                 });
     }

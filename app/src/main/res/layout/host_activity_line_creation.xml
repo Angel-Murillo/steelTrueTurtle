@@ -13,6 +13,7 @@
 
     <TextView
         android:id="@+id/loginAs"
+        android:text="Login As: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
@@ -50,8 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phone"
-                    android:digits="0123456789."
-                    android:inputType="numberDecimal"
+
+                    android:inputType="phone"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
@@ -88,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/time"
+                    android:inputType="time"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -112,10 +114,10 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
             <Button
-                android:id="@+id/proceed1"
+                android:id="@+id/manageLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Manange Lines"
+                android:text="Manage Lines"
                 android:onClick="clicked"/>
         </LinearLayout>
     </ScrollView>

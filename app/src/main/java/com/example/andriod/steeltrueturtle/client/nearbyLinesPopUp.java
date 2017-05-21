@@ -34,7 +34,8 @@ public class nearbyLinesPopUp extends AppCompatActivity {
         // that the user pressed on nearbyLines page
         final String lineToBeReferenced= extras.getString("lineName");
         //Log.i("look here",lineToBeReferenced);
-        mPostReference.child("Line").addValueEventListener(new ValueEventListener() {
+
+        mPostReference.child("hostInformation_lineInformation").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {

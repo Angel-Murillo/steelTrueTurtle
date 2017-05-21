@@ -74,6 +74,9 @@ public class acquireInformation extends AppCompatActivity implements GoogleApiCl
             public void onClick(View view) {
                 String name = inputName.getText().toString();
                 String phone = inputPhone.getText().toString();
+                //TODO
+                //ADD more input safety, like name should have certain lengths
+                //and else if statement should run accordingly to the fault in the logic
                 if(name.length()>0&& phone.length()==10){
                     createsteelTurtleUser(name,phone,inputName,inputPhone,loginDetails);
 

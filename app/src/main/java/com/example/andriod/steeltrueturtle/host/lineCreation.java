@@ -101,7 +101,9 @@ public class lineCreation extends AppCompatActivity implements GoogleApiClient.O
                 String location = inputLocation.getText().toString();
                 String time = inputTime.getText().toString();
                 String description = inputDescription.getText().toString();
-                //**needs a time contains ":"
+                //TODO **needs a time contains ":"
+                //implement the clock
+                //ADD more input safety, like name should have certain lengths
                 if(name.length()>0 &&phone.length()==10&& lineName.length() >0&& location.length() >0&& time.length() >4&&time.length() <6&& description.length()>0)
                 {
                     // Check for already existed userId
@@ -167,7 +169,7 @@ public class lineCreation extends AppCompatActivity implements GoogleApiClient.O
         inflater.inflate(R.menu.log_out_menu, menu);
         return true;
     }
-    
+
     //handles the logout option
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

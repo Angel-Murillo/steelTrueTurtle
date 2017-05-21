@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-    tools:context="com.example.andriod.steeltrueturtle.host.queuerPopUp">
+    tools:context="com.example.andriod.steeltrueturtle.host.queuerInLinePopUp">
 
     <TextView
         android:id="@+id/queuerName"
         android:layout_width="150dp"
         android:layout_height="34dp"
-
+        android:text="Name:"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="65dp"
         tools:ignore="MissingConstraints" />
@@ -21,7 +20,7 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone"
+        android:text="Phone:"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="118dp"
         tools:ignore="MissingConstraints" />

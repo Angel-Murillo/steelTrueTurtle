@@ -19,15 +19,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".HostOrJoin" />
-        <activity android:name=".host.hostInformation" />
-        <activity android:name=".host.manageLines" />
-        <activity android:name=".client.clientInformation" />
-        <activity android:name=".client.nearbyLines" />
-        <activity android:name=".client.queuerDetails" />
-        <activity android:name=".host.listOfQueuers" />
-        <activity android:name=".host.queuerPopUp"
+        <activity android:name=".host.lineCreation" />
+        <activity android:name=".host.lineManagement" />
+        <activity android:name=".host.queuersInLine" />
+        <activity android:name=".host.queuerInLinePopUp"
             android:theme="@style/AppTheme.touchDisappear"></activity>
-        <activity android:name=".client.hostInformationPopUp"></activity>
+        <activity android:name=".client.acquireInformation" />
+        <activity android:name=".client.nearbyLines" />
+        <activity android:name=".client.detailsPage" />
+        <activity android:name=".client.nearbyLinesPopUp"
+            android:theme="@style/AppTheme.touchDisappear"></activity>
+
+
 
     </application>
 

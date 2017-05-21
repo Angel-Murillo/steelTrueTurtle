@@ -38,25 +38,31 @@ public class steelTurtleUser{
         this.gmail = gmail;
     }
     public String getTime()
-    {return time;}
-    public void setTime(String time){
+    {
+        return time;
+    }
+    public void setTime(String time)
+    {
         this.time = time;
     }
     public String getPhone()
     {return phone;}
     public void setPhone(String phone){
+
         this.phone = phone;
     }
     public String getGmail()
     {
+
         return gmail;
     }
     public void setGmail(String gmail)
+
     {
         this.gmail= gmail;
     }
 
-    //all new
+
     public String getName() {
 
         return name;

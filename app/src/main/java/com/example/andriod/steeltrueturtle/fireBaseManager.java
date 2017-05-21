@@ -26,20 +26,13 @@ public class fireBaseManager {
     private DatabaseReference mPostReference= FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
 
+    //used to initialize object
     public fireBaseManager(){
 
     }
-    /*maybe later on
-    private int lines;
-    public void firebaseLines(int lines)
-    {
-        this.lines = lines;
-    }
-    public int Lines()
-    {
-        return lines;
-    }*/
-    //used in manageLines
+    //used in the deleteLine method in this class
+    //deletes the same line that was deleted in deleteLine
+    //but this time in the child NearbyLine
     public void deleteLineWithQueuers(final String lineName)
     {
         mPostReference.child("NearbyLine").addValueEventListener(new ValueEventListener() {
@@ -48,7 +41,7 @@ public class fireBaseManager {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                     String lines = snapshot.getKey().toString();
-                    Log.i("the NearbyLine:",lines);
+
                     if(lines.equals(lineName)){
                         snapshot.getRef().setValue(null);
                     }
@@ -57,16 +50,20 @@ public class fireBaseManager {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e("FAILED", "Failed", databaseError.toException());
             }
         });
     }
-    //used in manageLines
-    //deletes line that user wants to delete
+    //used in HOST,lineManagement
+    //deletes line that user wants to delete from 'Line' in firebase
+    //Logic:compare the gmails that are under 'Line' from firebase, with the
+    //gmail that the user log in as and goes through each object under 'Line'
+    //until the position(relative to the lines that pertain to the current host)
+    //of the line clicked by the Host is reached
     public void deleteLine(final int position)
     {
-        Log.i("POSTIONNNNNNNNNNNNNN"," POSITION:::::::     " + position);
-        mPostReference.child("Line").addValueEventListener(new ValueEventListener() {
+
+        mPostReference.child("hostInformation_lineInformation").addValueEventListener(new ValueEventListener() {
             int compare = 0;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,12 +72,8 @@ public class fireBaseManager {
                 int noMore = -1;
                 if(position >-1)
                 {
-                    Log.i("eeeeeeeeeeeeee","I entered");
-                    //User user = dataSnapshot.getValue(User.class);
-                    Log.i("Hello ","At the beginning compare is"+compare+ "and pos is:" + position);
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
                         String gmail = snapshot.getValue(steelTurtleUser.class).getGmail();
-                        Log.i("checkkkk","gmail is this: "+gmail +"googleGmail is this: "+googleGmail);
                         if(gmail==null)
                         {
 
@@ -97,127 +90,130 @@ public class fireBaseManager {
                                 snapshot.getRef().child("location").setValue(null);
                                 snapshot.getRef().child("time").setValue(null);
                                 snapshot.getRef().child("description").setValue(null);
-                                //positionClicked(noMore);
-
                             }
                             compare++;
                         }
-
-
-
                     }
                 }
-
-                Log.i("Hello1 ","I did not go");
-                return;
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.e("jjj", "Failed to read user", error.toException());
+                Log.e("FAILED", "Failed", error.toException());
             }
         });
-        Log.i("end","i ended yesssssssssssssssssssssssssssssss");
-        return;
     }
-    //used in manageLines
-    //gets the users lines that he/she created
-    public void displayHostLines(final ArrayList<String> mUser)
+    //used in lineManagement
+    //adds all the lines that pertain to the current user using the application
+    //to an array which then the lines can be viewed by a ListView in the
+    //lineManagement page
+    //Logic:compare the gmails that are under 'Line' from firebase, with the
+    //gmail that the user log in as
+    public void displayHostLines(final ArrayList<String> hostLines)
     {
-        mPostReference.child("Line").addValueEventListener(new ValueEventListener() {
+        mPostReference.child("hostInformation_lineInformation").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //if(dataSnapshot.exists())
-                //{
+
                 mAuth= FirebaseAuth.getInstance();
                 FirebaseUser clientAuth = mAuth.getCurrentUser();
                 final String googleGmail = clientAuth.getEmail().toString();
                 for(DataSnapshot postSnapShot:dataSnapshot.getChildren())
                 {
-                    //good to know this but dont need it
-                            /*String name=postSnapShot.getValue(User.class).getName();
-                            String email = postSnapShot.getValue(User.class).getEmail();
-                            String sentence = name+ "\n" + email;
-                            mUser.add(sentence);*/
-
                     String lineName=postSnapShot.getValue(steelTurtleUser.class).getLineName();
                     String gmail = postSnapShot.getValue(steelTurtleUser.class).getGmail();
-                    Log.i("checkkkk","gmail is this: "+gmail +"googleGmail is this: "+googleGmail);
+
                     if(gmail==null)
                     {
-                        Log.i("eeeeeeeeeeeeeeeeee","im inside");
+
                     }
-                    else if(gmail.equals(googleGmail))
-                        mUser.add(lineName);
-
-
-
+                    else if(gmail.equals(googleGmail)) {
+                        hostLines.add(lineName);
+                    }
                 }
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e("FAILED", "Failed", databaseError.toException());
             }
         });
     }
-
-    //allows to retrieve location of all users in firebase/specifcally for queuers
-    public void displayLocationChild(final ArrayList<String> mUser) {
-        mPostReference.child("Line").addValueEventListener(new ValueEventListener() {
+    //used in CLIENT, nearbyLines
+    //adds all the lines that have been created in firebase
+    //which can be looked at through nearbyLine listView
+    public void displayLines(final ArrayList<String> mUser) {
+        mPostReference.child("hostInformation_lineInformation").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //if(dataSnapshot.exists())
-                //{
                 for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
 
                     String address = postSnapShot.getValue(steelTurtleUser.class).getLineName();
 
                     mUser.add(address);
-                    //if you want to use this change arrayAdapter<User>
-                    //User user= d.getValue(User.class);
-                    //mUser.add(user);
-                    //arrayA.notifyDataSetChanged();
+
 
                 }
-                //}
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e("FAILED", "Failed", databaseError.toException());
             }
         });
     }
-    //
-    //display the client/queuers that have assigned to a particular line
+    //used in HOST,queuersInLine
+    //display the clients that have signed up to a particular line
+    //that the host created
     public void displayQueuers(final ArrayList<String> nQueuers,String line) {
         mPostReference.child("NearbyLine").child(line).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //if(dataSnapshot.exists())
-                //{
                 for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
 
                     String name = postSnapShot.getValue(steelTurtleUser.class).getName();
-                    Log.i("here check: ",name);
                     nQueuers.add(name);
 
-
                 }
-                //}
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e("FAILED", "Failed", databaseError.toException());
             }
         });
     }
 
+    //used in CLIENT,detailsPage
+    //removes client from the line he registered in firebase;from NearbyLines
+    public void removeFromLine(final String lineName,final String phone)
+    {
 
+        mPostReference.child("NearbyLine").child(lineName).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    String phones = snapshot.getValue(steelTurtleUser.class).getPhone();
+
+                    if(phones==null)
+                    {
+
+                    }
+                    else if(phones.equals(phone)){
+                        //Log.i("name:",names);
+                        snapshot.getRef().child("gmail").setValue(null);
+                        snapshot.getRef().child("name").setValue(null);
+                        snapshot.getRef().child("phone").setValue(null);
+                        return;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("FAILED", "Failed", error.toException());
+            }
+        });
+
+    }
 }

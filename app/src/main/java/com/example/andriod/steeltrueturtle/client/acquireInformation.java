@@ -30,6 +30,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class acquireInformation extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private TextView loginDetails;
@@ -74,10 +77,37 @@ public class acquireInformation extends AppCompatActivity implements GoogleApiCl
             public void onClick(View view) {
                 String name = inputName.getText().toString();
                 String phone = inputPhone.getText().toString();
-                //TODO
-                //ADD more input safety, like name should have certain lengths
-                //and else if statement should run accordingly to the fault in the logic
-                if(name.length()>0&& phone.length()==10){
+
+                if(phone.length()!=10){
+                    Snackbar spacesMessage = Snackbar.make(view, "Sorry please make sure your phone number is correct", Snackbar.LENGTH_SHORT);
+                    spacesMessage.show();
+                    return;
+                }
+                else if(name.length()==0){
+                    Snackbar spacesMessage = Snackbar.make(view, "Sorry please enter a your name", Snackbar.LENGTH_SHORT);
+                    spacesMessage.show();
+                    return;
+                }else if(phone.length() == 0){
+                    Snackbar spaceMessage = Snackbar.make(view, "Sorry please enter your phone", Snackbar.LENGTH_SHORT);
+                    spaceMessage.show();
+                    return;
+                }else if(haveSpecialCharacter(name)){
+                    Snackbar spaceMessage = Snackbar.make(view, "Sorry please don't have any special characters in your name", Snackbar.LENGTH_SHORT);
+                    spaceMessage.show();
+                    return;
+                }else if(haveCharacter(phone)){
+                    Snackbar spaceMessage = Snackbar.make(view, "Sorry please don't have any characters in your phone number", Snackbar.LENGTH_SHORT);
+                    spaceMessage.show();
+                    return;
+                }else if(haveNumbers(name)){
+                    Snackbar spaceMessage = Snackbar.make(view, "Sorry please don't have any numbers in your name", Snackbar.LENGTH_SHORT);
+                    spaceMessage.show();
+                    return;
+                }else if(haveSpecialCharacter(phone)){
+                    Snackbar spaceMessage = Snackbar.make(view, "Sorry please don't have any special characters in your phone number", Snackbar.LENGTH_SHORT);
+                    spaceMessage.show();
+                    return;
+                }else{
                     createsteelTurtleUser(name,phone,inputName,inputPhone,loginDetails);
 
                     Intent intent = new Intent(acquireInformation.this, nearbyLines.class);
@@ -89,17 +119,6 @@ public class acquireInformation extends AppCompatActivity implements GoogleApiCl
                     //redirect to nearbyLine page
                     startActivity(intent);
                 }
-                else if(phone.length()!=10){
-                    Snackbar spacesMessage = Snackbar.make(view, "Sorry please make sure your phone number is correct", Snackbar.LENGTH_SHORT);
-                    spacesMessage.show();
-                    return;
-                }
-                else if(name.length()==0){
-                    Snackbar spacesMessage = Snackbar.make(view, "Sorry please enter a your name", Snackbar.LENGTH_SHORT);
-                    spacesMessage.show();
-                    return;
-                }
-
             }
         });
     }
@@ -179,5 +198,24 @@ public class acquireInformation extends AppCompatActivity implements GoogleApiCl
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    private boolean haveSpecialCharacter(String name){
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(name);
+        return m.find();
+    }
+
+    private boolean haveNumbers(String name){
+        Pattern p = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(name);
+        return m.find();
+    }
+
+    private boolean haveCharacter(String number){
+        Pattern p = Pattern.compile("[a-z]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(number);
+        return m.find();
+    }
+
 }
 

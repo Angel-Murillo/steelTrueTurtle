@@ -28,7 +28,6 @@ public class clientInformation extends AppCompatActivity {
     private String userId;
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +63,6 @@ public class clientInformation extends AppCompatActivity {
             public void onClick(View view) {
                 String name = inputName.getText().toString();
                 String phone = inputPhone.getText().toString();
-
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {

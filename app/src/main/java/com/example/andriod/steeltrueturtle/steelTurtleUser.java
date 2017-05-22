@@ -9,9 +9,6 @@ public class steelTurtleUser{
     private String location;
     private String time;
     private String description;
-    private String emails;
-    //may use or not
-    private String securityCode;
     private String gmail;
 
     public steelTurtleUser() {
@@ -71,14 +68,7 @@ public class steelTurtleUser{
         this.name = name;
     }
 
-    public String getEmail() {
 
-        return emails;
-    }
-    public void setEmail(String emails) {
-
-        this.emails= emails;
-    }
     public String getLocation() {
 
         return location;
@@ -103,12 +93,5 @@ public class steelTurtleUser{
 
         this.description = description;
     }
-    public String getSecurityCode() {
 
-        return securityCode;
-    }
-    public void setSecurityCode(String securityCode) {
-
-        this.securityCode = securityCode;
-    }
 }

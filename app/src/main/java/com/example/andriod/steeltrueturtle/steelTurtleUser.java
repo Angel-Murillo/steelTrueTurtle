@@ -3,17 +3,16 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class steelTurtleUser{
-    public String name;
-    public String phone;
-    public String lineName;
-    public String location;
-    public String time;
-    public String description;
-    public String emails;
+    private String name;
+    private String phone;
+    private String lineName;
+    private String location;
+    private String time;
+    private String description;
+    private String emails;
     //may use or not
-    public String securityCode;
-
-    public String gmail;
+    private String securityCode;
+    private String gmail;
 
     public steelTurtleUser() {
     }
